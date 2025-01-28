@@ -1,13 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { HouseLogo } from "@/components/ui/houseLogo";
 
 export const MenuBar = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-
   // Animation variants
   const staggerChildren = {
     initial: { opacity: 0, y: 10 },

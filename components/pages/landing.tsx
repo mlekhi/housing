@@ -3,9 +3,8 @@
 import { FC } from 'react';
 
 import { motion } from 'framer-motion';
-import { ArrowRight, ChevronRight, Globe, Users } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import Link from 'next/link';
-import { PiPlant } from 'react-icons/pi';
 
 import { BackgroundContainer } from '@/components/ui/backgroundContainer';
 import { Button } from '@/components/ui/button';

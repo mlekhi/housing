@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowLeft, Home } from 'lucide-react';
+import { Home } from 'lucide-react';
 import Link from 'next/link';
 
 import { BackgroundContainer } from '@/components/ui/backgroundContainer';
