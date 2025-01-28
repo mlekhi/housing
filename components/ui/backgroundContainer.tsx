@@ -1,9 +1,7 @@
 'use client';
 
 import { FC, ReactNode } from 'react';
-
 import { motion } from 'framer-motion';
-
 import { cn } from '@/lib/utils';
 
 interface BackgroundContainerProps {
@@ -18,26 +16,52 @@ export const BackgroundContainer: FC<BackgroundContainerProps> = ({
   return (
     <div
       className={cn(
-        'relative flex min-h-screen w-full flex-col overflow-hidden bg-zinc-50',
+        'relative flex min-h-screen w-full flex-col overflow-hidden bg-gradient-to-b from-purple-100 via-white to-purple-50',
         className,
       )}
     >
+      {/* Animated Visible Dots Background */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        animate={{ opacity: 0.6 }}
         transition={{ duration: 1.5 }}
-        className="absolute inset-0 bg-[linear-gradient(to_right,#8882_1px,transparent_1px),linear-gradient(to_bottom,#8882_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_0%,#000_70%,transparent_100%)]"
+        className="absolute inset-0 bg-[radial-gradient(circle_8px_at_8px_8px,#a494ff,transparent_10%)] bg-[size:20px_20px]"
       />
 
+      {/* Subtle Purple Gradients for Depth */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.2 }}
+        animate={{ opacity: 0.4 }}
         transition={{ duration: 2 }}
         className="absolute inset-0"
       >
-        <div className="absolute h-full w-full bg-[radial-gradient(circle_800px_at_100%_200px,#cbd5e144,transparent)]" />
-        <div className="absolute h-full w-full bg-[radial-gradient(circle_800px_at_0%_300px,#94a3b844,transparent)]" />
+        <div className="absolute h-full w-full bg-[radial-gradient(circle_600px_at_top_left,#a494ff,transparent)]" />
+        {/* <div className="absolute h-full w-full bg-[radial-gradient(circle_600px_at_bottom_right,#d8b4fe33,transparent)]" /> */}
       </motion.div>
+
+      {/* Floating Purple Elements */}
+      <motion.div
+        initial={{ y: 10, opacity: 0 }}
+        animate={{ y: 0, opacity: 0.6 }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          repeatType: 'reverse',
+        }}
+        className="absolute -top-10 left-10 h-32 w-32 rounded-full bg-purple-900/50 blur-3xl"
+      />
+      {/* <motion.div
+        initial={{ y: -10, opacity: 0 }}
+        animate={{ y: 0, opacity: 0.6 }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          repeatType: 'reverse',
+        }}
+        className="absolute top-20 right-20 h-48 w-48 rounded-full bg-purple-400/40 blur-2xl"
+      /> */}
+
+      {/* Content */}
       {children}
     </div>
   );

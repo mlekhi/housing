@@ -139,45 +139,6 @@ export const Landing: FC = () => {
         className="w-full border-t border-zinc-200 bg-white/50 backdrop-blur-sm"
       >
         <div className="mx-auto max-w-7xl px-6 py-8">
-          <motion.div
-            variants={staggerChildren}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 gap-12 md:grid-cols-3"
-          >
-            {[
-              { icon: Users, stat: '100+', label: 'Stats' },
-              { icon: PiPlant, stat: '50K+', label: 'Something' },
-              { icon: Globe, stat: '10+', label: 'Blah' },
-            ].map(({ icon: Icon, stat, label }) => (
-              <motion.div
-                key={label}
-                variants={fadeIn}
-                whileHover={{ y: -5 }}
-                className="flex items-center space-x-4"
-              >
-                <motion.div
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.7 }}
-                  className="rounded-full bg-zinc-100 p-3"
-                >
-                  <Icon className="h-6 w-6 text-zinc-600" />
-                </motion.div>
-                <div>
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    className="text-2xl font-semibold text-zinc-900"
-                  >
-                    {stat}
-                  </motion.div>
-                  <div className="text-sm text-zinc-600">{label}</div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
         </div>
       </motion.div>
     </BackgroundContainer>
