@@ -40,17 +40,8 @@ export const About: FC = () => {
             >
               About Us
             </motion.h1>
-            <motion.p
-              variants={fadeIn}
-              className="max-w-2xl text-xl text-zinc-600 text-center"
-            >
-              Helping Western University students navigate the housing market, 
-              one guide at a time. We’re here to make your journey stress-free, 
-              informed, and tailored to your needs.
-            </motion.p>
           </motion.div>
 
-          {/* Content Section */}
           <motion.div
             variants={staggerChildren}
             initial="initial"
@@ -58,58 +49,42 @@ export const About: FC = () => {
             className="flex flex-col space-y-12"
           >
             {/* Mission Section */}
-            <motion.div variants={fadeIn} className="space-y-4 text-center">
-              <h2 className="text-3xl font-semibold text-zinc-900">
-                Our Mission
-              </h2>
-              <p className="text-zinc-600 max-w-3xl mx-auto">
-                We believe that finding a home away from home should be easy and accessible for all students. 
-                Our mission is to empower students with reliable, student-focused resources to navigate their 
-                housing options with confidence. From curated guides to housing tips, we’re here to make your 
-                search simple and efficient.
+            <motion.div variants={fadeIn} className="space-y-2">
+            <p className="text-zinc-600 max-w-3xl mx-auto">
+                Finding housing in London is tough.
               </p>
             </motion.div>
 
-            {/* Why We Started Section */}
-            <motion.div variants={fadeIn} className="space-y-4 text-center">
-              <h2 className="text-3xl font-semibold text-zinc-900">
-                Why We Started
-              </h2>
-              <p className="text-zinc-600 max-w-3xl mx-auto">
-                As students ourselves, we experienced the challenges of finding housing firsthand—from understanding neighborhoods to avoiding scams. 
-                We realized there was a gap in accessible, student-focused resources for navigating the local housing market. 
-                That’s why we created this guide: to share what we’ve learned and help make the process easier for others.
+            <motion.div variants={fadeIn} className="space-y-2">
+            <p className="text-zinc-600 max-w-3xl mx-auto">
+                As students ourselves, we experienced the challenges of finding housing firsthand—from understanding neighborhoods to avoiding scams.
+                We believe that finding a home away from home should be easy and accessible for all students. 
+                That’s why we created this guide: to develop a shared database of we’ve learned and help make the process easier for others.
               </p>
             </motion.div>
 
             {/* What We Offer Section */}
-            <motion.div variants={fadeIn} className="space-y-4 text-center">
-              <h2 className="text-3xl font-semibold text-zinc-900">
-                What We Offer
-              </h2>
+            <motion.div variants={fadeIn} className="space-y-2">
               <p className="text-zinc-600 max-w-3xl mx-auto">
-                Our platform is packed with everything you need to find the perfect home:
+                <span className="text-zinc-800 text-lg">HouseWestern</span> is packed with everything you need to know to navigate London:
               </p>
               <ul className="list-disc list-inside text-zinc-600 max-w-2xl mx-auto space-y-2">
                 <li>Neighborhood breakdowns, highlighting safety, affordability, and accessibility.</li>
                 <li>Tips for negotiating leases and understanding rental contracts.</li>
                 <li>Guides to avoid rental scams and find trusted landlords.</li>
                 <li>Furniture recommendations and budgeting advice for setting up your space.</li>
-                <li>Insights tailored specifically for Western University students.</li>
               </ul>
+              <p className="text-zinc-600 max-w-3xl mx-auto">All tailored specifically for Western Unviersity students.</p>
             </motion.div>
 
-            {/* Call to Action Section */}
-            <motion.div variants={fadeIn} className="space-y-4 text-center">
-              <h2 className="text-3xl font-semibold text-zinc-900">
-                Join Our Community
-              </h2>
-              <p className="text-zinc-600 max-w-3xl mx-auto">
-                Together, we’re creating a space where students can find, share, and connect over the best housing opportunities in London. 
-                Your journey starts here—whether it’s your first rental or your next move.
+            <motion.div variants={fadeIn} className="space-y-2">
+              <p className="text-zinc-800 max-w-3xl mx-auto">
+                - Maya, Kunal, & the HouseWestern Team
               </p>
             </motion.div>
           </motion.div>
+
+
         </div>
       </main>
 
@@ -121,10 +96,7 @@ export const About: FC = () => {
         transition={{ duration: 0.7 }}
         className="w-full border-t border-zinc-200 bg-white/50 backdrop-blur-sm"
       >
-        <div className="mx-auto max-w-7xl px-6 py-8 text-center">
-          <p className="text-zinc-600">
-            Made by students, for students. Your trusted housing guide for Western University.
-          </p>
+        <div className="mx-auto max-w-7xl px-6 py-8">
           <Link
             href="/"
             className="mt-4 inline-block text-zinc-900 hover:text-zinc-600"
