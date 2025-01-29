@@ -75,10 +75,13 @@ export const Landing: FC = () => {
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Button className="group h-14 rounded-full bg-zinc-900 px-6 text-lg text-zinc-50 hover:bg-zinc-800 md:px-8">
+                    <Link
+                    href="/guide"
+                    className="group flex items-center justify-center h-14 rounded-full bg-zinc-900 px-6 text-lg text-zinc-50 transition hover:bg-zinc-800"
+                    >
                     Read Our Guide
-                    <ChevronRight className="ml-2 transition-transform group-hover:translate-x-0.5" />
-                  </Button>
+                    <ChevronRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                    </Link>
                 </motion.div>
                 <motion.div whileHover={{ x: 5 }}>
                   <Link
