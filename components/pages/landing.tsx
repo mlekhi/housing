@@ -5,6 +5,7 @@ import { FC } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import { BackgroundContainer } from '@/components/ui/backgroundContainer';
 import { MenuBar } from '@/components/ui/menu';
@@ -108,25 +109,13 @@ export const Landing: FC = () => {
               className="relative aspect-[4/3] w-full"
             >
               <div className="absolute inset-0 overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-2xl">
-                <motion.div
-                  animate={{
-                    background: [
-                      'linear-gradient(to right, #f8f9fa 0%, #e9ecef 50%, #f8f9fa 100%)',
-                      'linear-gradient(to right, #e9ecef 0%, #f8f9fa 50%, #e9ecef 100%)',
-                    ],
-                    backgroundPosition: ['200% 0', '-200% 0'],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: 'linear',
-                  }}
-                  className="absolute inset-0 flex items-center justify-center"
-                >
-                  <div className="h-full w-full p-6">
-                    <div className="h-full w-full rounded-lg bg-zinc-100" />
-                  </div>
-                </motion.div>
+                <Image
+                  src="/western.jpeg"
+                  alt="Western"
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-2xl"
+                />
               </div>
             </motion.div>
           </motion.div>

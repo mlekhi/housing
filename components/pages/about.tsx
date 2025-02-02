@@ -2,7 +2,6 @@
 
 import { FC } from 'react';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 import Image from 'next/image';
 import { MenuBar } from '@/components/ui/menu';
 import { BackgroundContainer } from '@/components/ui/backgroundContainer';
