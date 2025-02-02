@@ -4,6 +4,7 @@ import { FC } from 'react';
 import { motion } from 'framer-motion';
 import { BackgroundContainer } from '@/components/ui/backgroundContainer';
 import { MenuBar } from '@/components/ui/menu';
+import { Footer } from '@/components/ui/footer';
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -217,6 +218,7 @@ export const HousingGuide: FC = () => {
           </motion.div>
         </div>
       </main>
+      <Footer/>
     </BackgroundContainer>
   );
 };

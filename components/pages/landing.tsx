@@ -8,6 +8,7 @@ import Link from 'next/link';
 
 import { BackgroundContainer } from '@/components/ui/backgroundContainer';
 import { MenuBar } from '@/components/ui/menu';
+import { Footer } from '@/components/ui/footer';
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -84,7 +85,7 @@ export const Landing: FC = () => {
                 </motion.div>
                 <motion.div whileHover={{ x: 5 }}>
                   <Link
-                    href="/demo"
+                    href="/housing"
                     className="text-zinc-600 transition-colors hover:text-zinc-900"
                   >
                     Explore Housing →
@@ -132,16 +133,8 @@ export const Landing: FC = () => {
         </div>
       </main>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7 }}
-        className="w-full border-t border-zinc-200 bg-white/50 backdrop-blur-sm"
-      >
-        <div className="mx-auto max-w-7xl px-6 py-8">
-        </div>
-      </motion.div>
+      <Footer/>
+
     </BackgroundContainer>
   );
 };
