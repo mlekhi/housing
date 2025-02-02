@@ -55,10 +55,7 @@ export const HousingGuide: FC = () => {
                 Student-Dense Areas
               </h2>
               <p className="text-zinc-600">
-                London offers several areas popular among students. Each has its
-                own benefits depending on your priorities like budget,
-                proximity, and safety:
-              </p>
+                When it comes to off-campus housing in London, ON, there are really five ‘desirable areas’ for students to live in, all assessed on certain criteria shown below. The order is not suggestive of any area being better than others.               </p>
               <ul className="space-y-2">
                 <li>
                   <strong>Downtown Core:</strong> Close to Western and Fanshawe

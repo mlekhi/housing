@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 import { BackgroundContainer } from '@/components/ui/backgroundContainer';
 import { Button } from '@/components/ui/button';
-import { Footer } from '@/components/ui/footer';
+// import { Footer } from '@/components/ui/footer';
 
 export const NotFound = () => {
   return (
