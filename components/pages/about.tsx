@@ -79,7 +79,7 @@ export const About: FC = () => {
             </div>
             
             <motion.div variants={fadeIn} className="space-y-2 mt-6">
-              <p className="text-zinc-800 text-md"><span className="text-zinc-800 text-lg">HouseWestern</span> is packed with everything you need to know to navigate London:</p>
+              <p className="text-zinc-800 text-mdh"><span className="text-zinc-800 text-lg">HouseWestern</span> is packed with everything you need to know to navigate London:</p>
               <ul className="list-disc list-inside text-zinc-600 max-w-2xl mx-auto space-y-2 text-sm">
                 <li>Neighborhood breakdowns, highlighting safety, affordability.</li>
                 <li>Tips for negotiating leases and understanding rental contracts.</li>
