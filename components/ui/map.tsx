@@ -94,11 +94,11 @@ const busRoutes = {
   },
 };
 
-function RegionZoom({ target }) {
-  const map = useMap();
-  if (target) map.flyTo(target.center, 14, { duration: 1.5 });
-  return null;
-}
+// function RegionZoom({ target }) {
+//   const map = useMap();
+//   if (target) map.flyTo(target.center, 14, { duration: 1.5 });
+//   return null;
+// }
 
 export default function BusMap() {
   const [selectedRegion, setSelectedRegion] = useState(null);
@@ -107,7 +107,7 @@ export default function BusMap() {
   return (
     <div className="flex">
       {/* Sidebar */}
-      <div className="w-1/4 p-4 bg-gray-50">
+      {/* <div className="w-1/4 p-4 bg-gray-50">
         <h2 className="text-lg font-bold">Regions</h2>
         {Object.entries(regions).map(([key, region]) => (
           <button key={key} className="block mt-2 text-blue-500 hover:underline" onClick={() => setSelectedRegion(region)}>
@@ -132,10 +132,10 @@ export default function BusMap() {
               ))}
           </>
         )}
-      </div>
+      </div> */}
 
       {/* Map */}
-      <MapContainer center={[43.003, -81.275]} zoom={13} style={{ height: "100vh", width: "75%" }}>
+      {/* <MapContainer center={[43.003, -81.275]} zoom={13} style={{ height: "100vh", width: "75%" }}>
         <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />
 
         {Object.entries(regions).map(([key, region]) => (
@@ -152,7 +152,7 @@ export default function BusMap() {
         ))}
         {selectedRegion && <RegionZoom target={selectedRegion} />}
         {selectedRoute && <Polyline positions={selectedRoute.path} pathOptions={{ color: "#ff7b72", weight: 3 }} />}
-      </MapContainer>
+      </MapContainer> */}
     </div>
   );
 }
