@@ -88,14 +88,6 @@ export const HousingGuide: FC = () => {
               <h2 className="text-2xl pt-6">Allergies</h2>
               <p className="pt-3">Allergies are an important health consideration to discuss with your roommate to ensure everyone’s safety and comfort in the shared living space. Start by asking about any allergies they may have, whether to food, pets, or environmental factors like dust or pollen. If your roommate has a food allergy, take steps to minimize risks—for example, storing allergenic items like eggs or nuts in separate compartments of the fridge or even in a mini fridge in your room if necessary. This helps prevent cross-contamination and ensures that shared spaces remain safe for everyone.</p>
             </CollapsibleSection>
-
-            <CollapsibleSection title="Furniture">
-              <p>Furniture is often one of the largest costs in moving into any new place. While some places come furnished, the below content is mostly for homes that aren’t fully furnished.</p>
-              <p>Facebook Marketplace: a great place to find second-hand furniture, you can speak to sellers directly, and transactions can be done securely by cash once you’ve picked them up to avoid scams. You can also directly inspect the items before purchasing this way. The only downside to marketplace furniture is that you usually bear the responsibility of pick-up. I recommend holding all of the items on one day, renting a UHaul and doing pick up all at once. There are also facebook groups where people post items for trade. Around April at the end of the school year when graduates are leaving is when you’ll have the most luck here. Kijiji is similar. </p>
-              <p>Jysk: fair quality, sort of like Ikea but has multiple locations in London. Can furnish most of the house in just a few thousand dollars, which all things said and done, is affordable.</p>
-              <p>Driving Around: Oftentimes, in areas of student single-family homes such as Old North, people will leave furniture they cannot get rid of or sell in their front yard waiting for garbage pick-up. These items are usually in decent condition, and just require some clean-up. So, in April, as students are leaving, you can usually find some decent items for free of cost. I recommend going with a U-Haul to store many items at once.</p>
-              <p>Yard Sales: Again, in April, many students do yard sales to get rid of their items. You may also want to pay these a visit. You’ll see posters on lightposts, etc. to find these items.</p>
-            </CollapsibleSection>
             
             {/* Repeat for other sections */}
           </motion.div>
