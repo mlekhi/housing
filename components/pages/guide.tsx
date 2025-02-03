@@ -89,7 +89,21 @@ export const HousingGuide: FC = () => {
               <p className="pt-3">Allergies are an important health consideration to discuss with your roommate to ensure everyone’s safety and comfort in the shared living space. Start by asking about any allergies they may have, whether to food, pets, or environmental factors like dust or pollen. If your roommate has a food allergy, take steps to minimize risks—for example, storing allergenic items like eggs or nuts in separate compartments of the fridge or even in a mini fridge in your room if necessary. This helps prevent cross-contamination and ensures that shared spaces remain safe for everyone.</p>
             </CollapsibleSection>
             
-            {/* Repeat for other sections */}
+            <CollapsibleSection title="Furniture">
+              <p>Furniture is often one of the largest costs in moving into any new place. While some places come furnished, the below content is mostly for homes that aren’t fully furnished.</p>
+              <p className="pt-3">Facebook Marketplace: a great place to find second-hand furniture, you can speak to sellers directly, and transactions can be done securely by cash once you’ve picked them up to avoid scams. You can also directly inspect the items before purchasing this way. The only downside to marketplace furniture is that you usually bear the responsibility of pick-up. I recommend holding all of the items on one day, renting a UHaul and doing pick up all at once. There are also facebook groups where people post items for trade. Around April at the end of the school year when graduates are leaving is when you’ll have the most luck here. Kijiji is similar.</p>
+              <p className="pt-3">Jysk: fair quality, sort of like Ikea but has multiple locations in London. Can furnish most of the house in just a few thousand dollars, which all things said and done, is affordable.</p>
+              <p className="pt-3">Driving Around: Oftentimes, in areas of student single-family homes such as Old North, people will leave furniture they cannot get rid of or sell in their front yard waiting for garbage pick-up. These items are usually in decent condition, and just require some clean-up. So, in April, as students are leaving, you can usually find some decent items for free of cost. I recommend going with a U-Haul to store many items at once.</p>
+              <p className="pt-3">Yard Sales: Again, in April, many students do yard sales to get rid of their items. You may also want to pay these a visit. You’ll see posters on lightposts, etc. to find these items.</p>
+            </CollapsibleSection>
+
+            <CollapsibleSection title="Housing Rights">
+              <p>Rent Control: For 2025, the most a landlord can increase rent (can increase once every 12 months) is 2.5%. And when they increase rent, they must give you at least 90 days advance communication. More on this in this link. </p>
+              <p className="pt-3">Appliance Maintenance: O. Reg. 517/06, s. 40 (1). States that Appliances supplied by the landlord of the rental unit shall be maintained in a good state of repair and in a safely operable condition. And section 40 (2) states that “appliances” include refrigerators, stoves, clothes washers, clothes dryers, dishwashers, and hot water tanks. </p>
+              <p className="pt-3">Heating: O. Reg. 517/06, s. 15 (1). States that Heat shall be provided and maintained so that the room temperature at 1.5 metres above floor level and one metre from exterior walls in all habitable space and in any area intended for normal use by tenants, including recreation rooms and laundry rooms but excluding locker rooms and garages, is at least 20 degrees Celsius.</p>
+              <p className="pt-3">Water: O. Reg. 517/06, s. 11 (1) states that Every kitchen sink, washbasin, bathtub and shower shall be provided, by safe equipment, with hot and cold running water. </p>
+              <p className="pt-3">You can find more details around all of these rules through the link here. Don’t let your landlord get away with things they shouldn’t be able to! </p>
+            </CollapsibleSection>
           </motion.div>
         </div>
       </main>
