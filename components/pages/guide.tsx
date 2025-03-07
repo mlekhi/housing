@@ -32,6 +32,7 @@ export const HousingGuide: FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
     fetch("/content/guide.md")
@@ -108,6 +109,7 @@ export const HousingGuide: FC = () => {
             variants={fadeIn}
             initial="initial"
             animate="animate"
+        viewport={{ once: true }}
         className="text-4xl font-light tracking-tight text-zinc-900 md:text-5xl lg:text-6xl mb-6"
       >
         Welcome to the Housing Guide
@@ -116,6 +118,7 @@ export const HousingGuide: FC = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
+        viewport={{ once: true }}
         className="text-lg md:text-xl text-zinc-600 mb-8"
       >
         Everything you need to know about finding the perfect student housing in London.
@@ -128,6 +131,7 @@ export const HousingGuide: FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 + index * 0.1 }}
+            viewport={{ once: true }}
             className="p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer"
             onClick={() => handleSectionClick(section.id)}
           >
@@ -147,7 +151,7 @@ export const HousingGuide: FC = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.7 }}
-        className="mt-12 p-6 bg-zinc-50 rounded-lg"
+        className="mt-12 p-6 bg-white rounded-lg"
       >
         <h3 className="text-lg font-medium text-zinc-900 mb-3">How to Use This Guide</h3>
         <ul className="text-left space-y-3 text-zinc-600">

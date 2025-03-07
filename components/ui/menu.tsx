@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { HouseLogo } from "@/components/ui/houseLogo";
+import {HouseLogo} from "@/components/ui/houseLogo";
+import {HouseLogoTitle} from "@/components/ui/houseLogoTitle";
 
 export const MenuBar = () => {
   // Animation variants
@@ -24,8 +25,14 @@ export const MenuBar = () => {
       className="relative w-full px-6 py-8"
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between">
-        {/* Logo */}
-        <HouseLogo />
+        {/* Logo for Desktop */}
+        <div className="hidden lg:block">
+          <HouseLogoTitle />
+        </div>
+        {/* Logo for Mobile */}
+        <div className="block lg:hidden">
+          <HouseLogo />
+        </div>
 
         {/* Menu Links */}
         <motion.div
