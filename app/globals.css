@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-@import "leaflet/dist/leaflet.css";
 
 @tailwind base;
 @tailwind components;
@@ -21,20 +20,4 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Inter, serif;
-}
-
-.leaflet-container {
-  width: 100%;
-  height: 100%;
-}
-
-.map_container {
-  max-height: 60vh;
-  border: 1px solid #ddd;
-  overflow: hidden;
-}
-
-.map_view {
-  height: 100%;
-  width: 100%;
 }
