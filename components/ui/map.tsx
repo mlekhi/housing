@@ -17,7 +17,7 @@ const studentAreas = [
         coordinates: [-81.275, 43.015] as [number, number],
         description: 'Popular student area near Masonville Mall with multiple bus routes',
         busRoutes: ['106', '27'],
-        color: '#ffcc00', // Bright yellow for Masonville
+        color: '#7e3ccd', // Light purple for Masonville
         boundary: [
           [-81.2747377, 43.0289096],
           [-81.2996929, 43.0216467],
@@ -56,7 +56,7 @@ const studentAreas = [
     coordinates: [-81.265, 43.005] as [number, number],
     description: 'Close to campus, popular for walking and bus routes',
     busRoutes: ['106', '27'],
-    color: '#ff5733', // Bright red for Old North
+    color: '#7e3ccd', // Light purple for Old North
     boundary: [
         [-81.2688234, 43.0122959],
         [-81.2670074, 43.0098373],
@@ -79,7 +79,7 @@ const studentAreas = [
     coordinates: [-81.245, 42.985] as [number, number],
     description: 'Vibrant area with many amenities and bus connections',
     busRoutes: ['106', '27', '13'],
-    color: '#33ccff', // Bright blue for Downtown
+    color: '#7e3ccd', // Light purple for Downtown
     boundary: [
         [-81.2369667, 43.0001084],
         [-81.2612568, 42.9928891],
@@ -108,7 +108,7 @@ const studentAreas = [
     coordinates: [-81.255, 42.995] as [number, number],
     description: 'South-side student area with good bus access',
     busRoutes: ['106', '27'],
-    color: '#ffcc00', // Bright yellow for Oxford/Wharncliffe
+    color: '#7e3ccd', // Light purple for Oxford/Wharncliffe
     boundary: [
         [-81.2718998, 43.0025564],
         [-81.2766605, 43.0018687],
@@ -131,7 +131,7 @@ const studentAreas = [
     coordinates: [-81.285, 43.005] as [number, number],
     description: 'Sarnia and Wonderland area with multiple bus routes',
     busRoutes: ['106', '27'],
-    color: '#ff5733', // Bright red for West of Campus
+    color: '#7e3ccd', // Light purple for West of Campus
     boundary: [
         [-81.3047334, 43.0075252],
         [-81.2938329, 42.9861186],
@@ -420,15 +420,19 @@ const Map = () => {
       console.log('Bus routes layer added.');
 
       // Check if the bus routes layer is present
-      const layers = map.current.getStyle().layers;
-      console.log('Current layers:', layers);
+      if (map.current) {
+        const layers = map.current.getStyle().layers;
+        console.log('Current layers:', layers);
 
-      // Check if the bus routes are visible
-      const busRoutesLayer = layers.find(layer => layer.id === 'bus-routes');
-      if (busRoutesLayer) {
-        console.log('Bus routes layer is present:', busRoutesLayer);
+        // Check if the bus routes are visible
+        const busRoutesLayer = layers.find(layer => layer.id === 'bus-routes');
+        if (busRoutesLayer) {
+          console.log('Bus routes layer is present:', busRoutesLayer);
+        } else {
+          console.warn('Bus routes layer is not found.');
+        }
       } else {
-        console.warn('Bus routes layer is not found.');
+        console.warn('Map is not initialized yet.');
       }
 
       // Add hover interactions
