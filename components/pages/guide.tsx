@@ -36,7 +36,7 @@ export const HousingGuide: FC = () => {
           
           {/* Sidebar Menu - Fixed Width & Prevents Shrinking */}
           <div className="hidden lg:block w-64 flex-shrink-0">
-            <SidebarMenu sections={sections} activeSection={activeSection} onSectionClick={setActiveSection} />
+            <SidebarMenu activeSection={activeSection} onSectionClick={setActiveSection} />
           </div>
 
           {/* Main Content - Fully Centered */}
