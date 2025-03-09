@@ -369,18 +369,13 @@ const Map = () => {
 
       // Hover interactions
       map.current?.on("mousemove", "student-area-fill", (e) => {
-        if (!e.features || e.features.length === 0) return; // Ensure features exist
+        const feature = e.features?.[0]; // Optional chaining ensures we safely access the first feature
+        if (!feature) return; // If there's no feature, exit early
       
-        const area = studentAreas.find(a => a.name === e.features[0].properties?.name);
+        const area = studentAreas.find(a => a.name === feature.properties?.name);
         if (area) setHoveredArea(area);
       });
-                  
-      map.current?.on("mouseleave", "student-area-fill", () => setHoveredArea(null));
-
-      map.current?.on("mouseenter", "student-area-fill", () => {
-        if (map.current) map.current.getCanvas().style.cursor = "pointer";
-      });
-
+      
       map.current?.on("mouseleave", "student-area-fill", () => {
         if (map.current) map.current.getCanvas().style.cursor = "";
       });
