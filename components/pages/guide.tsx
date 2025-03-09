@@ -7,7 +7,7 @@ import { MenuBar } from "@/components/ui/menu";
 import { Footer } from "@/components/ui/footer";
 import { ArrowUpRight } from "lucide-react";
 import SidebarMenu from "@/components/ui/SidebarMenu";
-import GuideCard from "@/components/ui/GuideCard";
+import GuideCard from "@/components/ui/guideCard";
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },

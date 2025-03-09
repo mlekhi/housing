@@ -405,11 +405,11 @@ const Map = () => {
   }, [visibleRoutes]);
 
   return (
-    <div className="flex gap-4">
+    <div className="flex flex-col-reverse md:flex-row gap-4">
       {/* Map Container */}
       <div className="w-full h-[450px] relative">
         <div ref={mapContainer} className="w-full h-full" />
-
+  
         {/* Hover Info Box */}
         {hoveredArea && (
           <div className="absolute top-4 left-4 bg-white p-3 rounded-lg shadow-lg">
@@ -418,33 +418,32 @@ const Map = () => {
           </div>
         )}
       </div>
-
+  
       {/* Bus Route Toggles */}
-      <div className="bg-white p-4 rounded-lg shadow-lg w-[260px]">
+      <div className="bg-white p-4 rounded-lg shadow-lg w-full md:w-[260px] order-last md:order-none">
         <h3 className="font-medium text-sm mb-3">Bus Routes</h3>
-        {busRoutes.map(route => (
-      <button
-        key={route.id}
-        onClick={() => toggleRoute(route.id)}
-        className={`flex items-center gap-3 w-full px-3 py-2 rounded-md transition ${
-          visibleRoutes.includes(route.id) 
-            ? "bg-opacity-10" 
-            : "opacity-50 hover:opacity-75"
-        }`}
-        style={{ backgroundColor: `${route.color}20` }} // Light background matching route color
-      >
-        {/* Colored Dot */}
-        <div 
-          className="w-3 h-3 rounded-full"
-          style={{ backgroundColor: route.color }}
-        />
-        {/* Route Name */}
-        <span className="font-medium text-sm text-gray-800">{route.id} - {route.name}</span>
-      </button>
-    ))}
+        <div className="space-y-2">
+          {busRoutes.map(route => (
+            <button
+              key={route.id}
+              onClick={() => toggleRoute(route.id)}
+              className={`flex items-center gap-3 w-full px-3 py-2 rounded-md transition ${
+                visibleRoutes.includes(route.id)
+                  ? "bg-opacity-10"
+                  : "opacity-50 hover:opacity-75"
+              }`}
+              style={{ backgroundColor: `${route.color}20` }} // Light background matching route color
+            >
+              {/* Colored Dot */}
+              <div className="w-3 h-3 rounded-full" style={{ backgroundColor: route.color }} />
+              {/* Route Name */}
+              <span className="font-medium text-sm text-gray-800">{route.id} - {route.name}</span>
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );
-};
+  };
 
 export default Map;
