@@ -70,7 +70,7 @@ export const About: FC = () => {
               Finding housing in London is tough.
             </motion.p>
             <motion.p variants={fadeIn} className="text-zinc-600 max-w-3xl mx-auto mt-3">
-              As students ourselves, we experienced the challenges of finding housing firsthand—from understanding neighborhoods to avoiding scams. We believe that finding a home away from home should be easy and accessible for all students.
+              As students ourselves, we experienced the challenges of finding housing firsthand, from understanding neighborhoods to avoiding scams. We believe that finding a home away from home should be easy and accessible for all students.
             </motion.p>
             <motion.p variants={fadeIn} className="text-zinc-600 max-w-3xl mx-auto mt-3">
               That’s why we created this guide: to develop a shared database of what we’ve learned and help make the process easier for others.

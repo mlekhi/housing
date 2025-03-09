@@ -20,7 +20,7 @@ const MapPage: FC = () => {
       >
         Interactive Map
       </motion.h1>
-      <p>Explore the main student living areas and bus routes around Western University.</p>
+      <p className="text-zinc-600 pb-4">Explore the main student living areas and bus routes around Western University.</p>
       <Map />
     </div>
   );

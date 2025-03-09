@@ -111,7 +111,7 @@ const SidebarMenu: FC<SidebarMenuProps> = ({ activeSection, onSectionClick }) =>
                   : "text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900"
               }`}
             >
-              <span className="text-lg">🏠</span>
+              <span className="text-lg">👋</span>
               <span className="flex-1">Welcome</span>
               <ChevronRight className={`w-4 h-4 transition-transform duration-200 ${!activeSection ? "rotate-90" : "opacity-0 group-hover:opacity-100"}`} />
             </button>
