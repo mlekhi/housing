@@ -57,14 +57,14 @@ export const MenuBar = () => {
               Guide
             </Link>
           </motion.div>
-          <motion.div variants={fadeIn} whileHover={{ y: -2 }}>
+          {/* <motion.div variants={fadeIn} whileHover={{ y: -2 }}>
             <Link
               href="/marketplace"
               className="text-zinc-600 transition-colors hover:text-zinc-900"
             >
               Housing
             </Link>
-          </motion.div>
+          </motion.div> */}
         </motion.div>
       </div>
     </motion.nav>

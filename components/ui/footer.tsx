@@ -59,12 +59,12 @@ export const Footer = () => {
             >
               Guide
             </Link>
-            <Link
+            {/* <Link
               href="/marketplace"
               className="text-sm transition-colors hover:text-zinc-900"
             >
               Housing
-            </Link>
+            </Link> */}
             <button
               onClick={() => setIsOpen(true)}
               className="text-sm transition-colors hover:text-zinc-900"
