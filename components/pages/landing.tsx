@@ -84,14 +84,14 @@ export const Landing: FC = () => {
                     <ChevronRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                     </Link>
                 </motion.div>
-                <motion.div whileHover={{ x: 5 }}>
+                {/* <motion.div whileHover={{ x: 5 }}>
                   <Link
                     href="/housing"
                     className="text-zinc-600 transition-colors hover:text-zinc-900"
                   >
                     Explore Housing →
                   </Link>
-                </motion.div>
+                </motion.div> */}
               </motion.div>
             </div>
           </motion.div>
