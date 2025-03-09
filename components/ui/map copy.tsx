@@ -1,10 +1,15 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import mapboxgl from "mapbox-gl";
-import "mapbox-gl/dist/mapbox-gl.css";
+import { useEffect, useRef, useState } from 'react';
+import mapboxgl from 'mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
+// You'll need to replace this with your own Mapbox access token
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN || '';
+
+if (!mapboxgl.accessToken) {
+  console.error('Mapbox token is missing. Please add NEXT_PUBLIC_MAPBOX_TOKEN to your environment variables.');
+}
 
 const studentAreas = [
     {
@@ -12,7 +17,7 @@ const studentAreas = [
         coordinates: [-81.275, 43.015] as [number, number],
         description: 'Popular student area near Masonville Mall with multiple bus routes',
         busRoutes: ['106', '27'],
-        color: '#d7b5ff', // Light purple for Masonville
+        color: '#7e3ccd', // Light purple for Masonville
         boundary: [
           [-81.2747377, 43.0289096],
           [-81.2996929, 43.0216467],
@@ -51,7 +56,7 @@ const studentAreas = [
     coordinates: [-81.265, 43.005] as [number, number],
     description: 'Close to campus, popular for walking and bus routes',
     busRoutes: ['106', '27'],
-    color: '#d7b5ff', // Light purple for Old North
+    color: '#7e3ccd', // Light purple for Old North
     boundary: [
         [-81.2688234, 43.0122959],
         [-81.2670074, 43.0098373],
@@ -74,7 +79,7 @@ const studentAreas = [
     coordinates: [-81.245, 42.985] as [number, number],
     description: 'Vibrant area with many amenities and bus connections',
     busRoutes: ['106', '27', '13'],
-    color: '#d7b5ff', // Light purple for Downtown
+    color: '#7e3ccd', // Light purple for Downtown
     boundary: [
         [-81.2369667, 43.0001084],
         [-81.2612568, 42.9928891],
@@ -103,7 +108,7 @@ const studentAreas = [
     coordinates: [-81.255, 42.995] as [number, number],
     description: 'South-side student area with good bus access',
     busRoutes: ['106', '27'],
-    color: '#d7b5ff', // Light purple for Oxford/Wharncliffe
+    color: '#7e3ccd', // Light purple for Oxford/Wharncliffe
     boundary: [
         [-81.2718998, 43.0025564],
         [-81.2766605, 43.0018687],
@@ -126,7 +131,7 @@ const studentAreas = [
     coordinates: [-81.285, 43.005] as [number, number],
     description: 'Sarnia and Wonderland area with multiple bus routes',
     busRoutes: ['106', '27'],
-    color: '#d7b5ff', // Light purple for West of Campus
+    color: '#7e3ccd', // Light purple for West of Campus
     boundary: [
         [-81.3047334, 43.0075252],
         [-81.2938329, 42.9861186],
@@ -281,167 +286,226 @@ const busRoutes = [
       ]
     }
   ];
-
+  
 const Map = () => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
-  const [visibleRoutes, setVisibleRoutes] = useState<string[]>(busRoutes.map(route => route.id));
   const [hoveredArea, setHoveredArea] = useState<typeof studentAreas[0] | null>(null);
+  
+  // Initialize visibleRoutes with all bus route IDs
+  const [visibleRoutes, setVisibleRoutes] = useState<string[]>(busRoutes.map(route => route.id));
+
+  // Function to toggle the visibility of a bus route
+  const toggleRoute = (routeId: string) => {
+    setVisibleRoutes(prev => 
+      prev.includes(routeId) 
+        ? prev.filter(id => id !== routeId) // Remove routeId if it's already visible
+        : [...prev, routeId] // Add routeId if it's not visible
+    );
+  };
+
+  // Add a separate useEffect for handling route visibility changes
+  useEffect(() => {
+    if (!map.current) return; // Ensure map is initialized
+
+    // Log the current state of visibleRoutes
+    console.log('Current visible routes:', visibleRoutes);
+
+    // Update the filter on the bus-routes layer
+    if (map.current.isStyleLoaded()) { // Check if the map style is loaded
+      console.log('Map style is loaded, setting filter for bus routes.');
+      map.current.setFilter('bus-routes', ['in', ['get', 'id'], ['literal', visibleRoutes]]);
+    } else {
+      console.warn('Map style is not loaded yet.');
+    }
+  }, [visibleRoutes]);
 
   useEffect(() => {
     if (!mapContainer.current) return;
 
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: "mapbox://styles/mapbox/light-v11",
+      style: 'mapbox://styles/mapbox/light-v11',
       center: [-81.265, 43.005],
-      zoom: 12,
+      zoom: 13
     });
 
-    map.current.on("load", () => {
-      console.log("Map loaded.");
+    map.current.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
-      // Add student areas source
-      map.current?.addSource("student-areas", {
-        type: "geojson",
+    map.current.on('load', () => {
+      console.log('Map has loaded.');
+
+      // Add student areas source and layers
+      map.current?.addSource('student-areas', {
+        type: 'geojson',
         data: {
-          type: "FeatureCollection",
+          type: 'FeatureCollection',
           features: studentAreas.map(area => ({
-            type: "Feature",
-            geometry: { type: "Polygon", coordinates: [area.boundary] },
-            properties: { name: area.name, description: area.description, color: area.color },
-          })),
-        },
-      });
-
-      // Add student areas fill layer
-      map.current?.addLayer({
-        id: "student-area-fill",
-        type: "fill",
-        source: "student-areas",
-        paint: {
-          "fill-color": ["get", "color"],
-          "fill-opacity": 0.2,
-          "fill-outline-color": ["get", "color"],
-        },
-      });
-
-      // Add student area outlines
-      map.current?.addLayer({
-        id: "student-area-outline",
-        type: "line",
-        source: "student-areas",
-        paint: {
-          "line-color": ["get", "color"],
-          "line-width": 2,
-        },
-      });
-
-      console.log("Student areas added.");
-
-      // Add bus routes source
-      map.current?.addSource("bus-routes", {
-        type: "geojson",
-        data: {
-          type: "FeatureCollection",
-          features: busRoutes.map(route => ({
-            type: "Feature",
-            geometry: { type: "LineString", coordinates: route.coordinates },
-            properties: { id: route.id, name: route.name, color: route.color },
-          })),
-        },
-      });
-
-      // Add bus routes layer
-      map.current?.addLayer({
-        id: "bus-routes",
-        type: "line",
-        source: "bus-routes",
-        paint: {
-          "line-color": ["get", "color"],
-          "line-width": 3,
-          "line-opacity": 0.8,
-        },
-        filter: ["in", "id", ...visibleRoutes],
-      });
-
-      console.log("Bus routes added.");
-
-      // Hover interactions
-      map.current.on("mousemove", "student-area-fill", (e) => {
-        if (e.features && e.features.length > 0) {
-          const area = studentAreas.find(a => a.name === e.features![0].properties?.name);
-          if (area) setHoveredArea(area);
+            type: 'Feature',
+            geometry: {
+              type: 'Polygon',
+              coordinates: [area.boundary]
+            },
+            properties: {
+              name: area.name,
+              description: area.description,
+              busRoutes: area.busRoutes,
+              color: area.color
+            }
+          }))
         }
       });
 
-      map.current.on("mouseleave", "student-area-fill", () => setHoveredArea(null));
-
-      map.current.on("mouseenter", "student-area-fill", () => {
-        if (map.current) map.current.getCanvas().style.cursor = "pointer";
+      // Add a layer for the area boundaries with dynamic colors
+      map.current?.addLayer({
+        id: 'student-area-boundaries',
+        type: 'fill',
+        source: 'student-areas',
+        paint: {
+          'fill-color': ['get', 'color'],
+          'fill-opacity': 0.1,
+          'fill-outline-color': ['get', 'color']
+        }
       });
 
-      map.current.on("mouseleave", "student-area-fill", () => {
-        if (map.current) map.current.getCanvas().style.cursor = "";
+      // Add a layer for the area outlines with dynamic colors
+      map.current?.addLayer({
+        id: 'student-area-outlines',
+        type: 'line',
+        source: 'student-areas',
+        paint: {
+          'line-color': ['get', 'color'],
+          'line-width': 1.5,
+          'line-opacity': 0.5
+        }
       });
+
+      // Log bus routes data
+      console.log('Bus routes data:', busRoutes);
+
+      // Add bus routes source and layer
+      map.current?.addSource('bus-routes', {
+        type: 'geojson',
+        data: {
+          type: 'FeatureCollection',
+          features: busRoutes.map(route => ({
+            type: 'Feature',
+            geometry: {
+              type: 'LineString',
+              coordinates: route.coordinates
+            },
+            properties: {
+              id: route.id,
+              name: route.name,
+              color: route.color
+            }
+          }))
+        }
+      });
+
+      // Add a layer for the bus routes with dynamic colors
+      map.current?.addLayer({
+        id: 'bus-routes',
+        type: 'line',
+        source: 'bus-routes',
+        paint: {
+          'line-color': ['get', 'color'],
+          'line-width': 3,
+          'line-opacity': 0.8,
+          'line-dasharray': [0, 2]
+        },
+        filter: ['in', ['get', 'id'], ['literal', visibleRoutes]]
+      });
+
+      console.log('Bus routes layer added.');
+
+      // Check if the bus routes layer is present
+      if (map.current) {
+        const layers = map.current.getStyle().layers;
+        console.log('Current layers:', layers);
+
+        // Check if the bus routes are visible
+        const busRoutesLayer = layers.find(layer => layer.id === 'bus-routes');
+        if (busRoutesLayer) {
+          console.log('Bus routes layer is present:', busRoutesLayer);
+        } else {
+          console.warn('Bus routes layer is not found.');
+        }
+      } else {
+        console.warn('Map is not initialized yet.');
+      }
+
+      // Add hover interactions
+      if (map.current) {
+        map.current.on('mousemove', 'student-area-boundaries', (e) => {
+          if (e.features && e.features.length > 0) {
+            const area = studentAreas.find(a => a.name === e.features![0].properties?.name);
+            if (area) {
+              setHoveredArea(area);
+            }
+          }
+        });
+
+        map.current.on('mouseleave', 'student-area-boundaries', () => {
+          setHoveredArea(null);
+        });
+
+        map.current.on('mouseenter', 'student-area-boundaries', () => {
+          if (map.current) {
+            map.current.getCanvas().style.cursor = 'pointer';
+          }
+        });
+
+        map.current.on('mouseleave', 'student-area-boundaries', () => {
+          if (map.current) {
+            map.current.getCanvas().style.cursor = '';
+          }
+        });
+      }
     });
 
-    return () => map.current?.remove();
-  }, []);
-
-  // Toggle bus route visibility
-  const toggleRoute = (routeId: string) => {
-    setVisibleRoutes(prev =>
-      prev.includes(routeId) ? prev.filter(id => id !== routeId) : [...prev, routeId]
-    );
-  };
-
-  // Update route visibility
-  useEffect(() => {
-    if (map.current?.isStyleLoaded()) {
-      console.log("Updating bus routes filter:", visibleRoutes);
-      map.current.setFilter("bus-routes", ["in", ["get", "id"], ["literal", visibleRoutes]]);
-    }
-  }, [visibleRoutes]);
+    return () => {
+      map.current?.remove();
+    };
+  }, []); // Remove visibleRoutes from dependencies here
 
   return (
     <div className="flex gap-4">
-      {/* Map Container */}
-      <div className="w-full h-[450px] relative">
+      <div className="relative w-full h-[600px] rounded-lg overflow-hidden shadow-lg">
         <div ref={mapContainer} className="w-full h-full" />
-
-        {/* Hover Info Box */}
         {hoveredArea && (
-          <div className="absolute top-4 left-4 bg-white p-3 rounded-lg shadow-lg">
-            <h3 className="font-medium text-base">{hoveredArea.name}</h3>
-            <p className="text-sm text-gray-600">{hoveredArea.description}</p>
+          <div className="absolute top-4 left-4 bg-white rounded-lg shadow-lg p-3 max-w-[200px]">
+            <h3 className="font-medium text-base mb-1">{hoveredArea.name}</h3>
+            <div className="text-sm text-zinc-600">
+              <span className="font-medium">Bus Routes:</span> {hoveredArea.busRoutes.join(', ')}
+            </div>
           </div>
         )}
       </div>
-
-      {/* Bus Route Toggles */}
-      <div className="bg-white p-4 rounded-lg shadow-lg w-[260px]">
+      
+      {/* Bus Routes Menu - Moved outside the map */}
+      <div className="bg-white rounded-lg shadow-lg p-4 w-[250px] h-fit">
         <h3 className="font-medium text-sm mb-3">Bus Routes</h3>
-        {busRoutes.map(route => (
-      <button
-        key={route.id}
-        onClick={() => toggleRoute(route.id)}
-        className={`flex items-center gap-3 w-full px-3 py-2 rounded-md transition ${
-          visibleRoutes.includes(route.id) 
-            ? "bg-opacity-10" 
-            : "opacity-50 hover:opacity-75"
-        }`}
-        style={{ backgroundColor: `${route.color}20` }} // Light background matching route color
-      >
-        {/* Colored Dot */}
-        <div 
-          className="w-3 h-3 rounded-full"
-          style={{ backgroundColor: route.color }}
-        />
-        {/* Route Name */}
-        <span className="font-medium text-sm text-gray-800">{route.id} - {route.name}</span>
-      </button>
-    ))}
+        <div className="space-y-2">
+          {busRoutes.map(route => (
+            <button
+              key={route.id}
+              onClick={() => toggleRoute(route.id)}
+              className={`flex items-center gap-2 text-sm px-3 py-2 rounded w-full transition-colors ${
+                visibleRoutes.includes(route.id)
+                  ? 'bg-opacity-10'
+                  : 'opacity-50 hover:opacity-75'
+              }`}
+              style={{ backgroundColor: `${route.color}20` }}
+            >
+              <div 
+                className="w-3 h-3 rounded-full"
+                style={{ backgroundColor: route.color }}
+              />
+              <span>{route.id} - {route.name}</span>
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );
