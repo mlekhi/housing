@@ -78,12 +78,13 @@ const SectionPage: FC = () => {
                       <blockquote className="border-l-4 border-gray-300 pl-4 italic text-gray-600 mb-6">{children}</blockquote>
                     ),
                     strong: ({ children }) => <strong className="font-medium text-gray-800">{children}</strong>,
-                    code: ({ inline, children }) =>
+                    code: ({ inline, children }: { inline?: boolean; children: React.ReactNode }) => (
                       inline ? (
                         <code className="bg-gray-100 text-gray-900 px-1 py-0.5 rounded">{children}</code>
                       ) : (
                         <pre className="bg-gray-900 text-white p-4 rounded-md overflow-x-auto mb-6">{children}</pre>
-                      ),
+                      )
+                    ),
                     a: ({ href, children }) => (
                       <a href={href} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
                         {children}
