@@ -67,9 +67,9 @@ const SectionPage: FC = () => {
                   remarkPlugins={[remarkGfm]}
                   rehypePlugins={[rehypeRaw]} // ✅ Fixes inline HTML
                   components={{
-                    h1: ({ children }) => <h1 className="text-5xl font-light mt-4 mb-6">{children}</h1>, // ✅ Reduced top margin
-                    h2: ({ children }) => <h2 className="text-3xl font-light mt-4 mb-4">{children}</h2>,
-                    h3: ({ children }) => <h3 className="text-2xl font-light mt-4 mb-3">{children}</h3>,
+                    h1: ({ children }) => <h1 className="text-5xl font-light mt-4 mb-6 text-gray-800">{children}</h1>,
+                    h2: ({ children }) => <h2 className="text-3xl font-light mt-4 mb-4 text-gray-800">{children}</h2>,
+                    h3: ({ children }) => <h3 className="text-2xl font-light mt-4 mb-3 text-gray-800">{children}</h3>,
                     p: ({ children }) => <p className="text-lg text-gray-800 leading-relaxed mb-4">{children}</p>,
                     ul: ({ children }) => <ul className="list-disc list-outside ml-8 space-y-2 mb-6">{children}</ul>, 
                     ol: ({ children }) => <ol className="list-decimal list-outside ml-8 space-y-2 mb-6">{children}</ol>,
