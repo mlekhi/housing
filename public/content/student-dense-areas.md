@@ -128,7 +128,7 @@ Students have multiple bus options:
 - 9, 31 are the routes for the north side of Sarnia and Wonderland.
 - 91/17 to Oxford/Wharncliffe with a connecting bus can also work.
 
-Commute times range from 20–40 minutes, so planning ahead is key. These routes can have infrequent service, and some (like 31) stop running relatively earlyat night.
+Commute times range from 20–40 minutes, so planning ahead is key. These routes can have infrequent service, and some (like 31) stop running relatively early at night.
 
 ### Access to Amenities and Essential Services
 
