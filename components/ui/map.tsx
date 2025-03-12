@@ -1214,101 +1214,113 @@ const busRoutes = [
 const Map = () => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
+  const [mapError, setMapError] = useState<string | null>(null);
   const [visibleRoutes, setVisibleRoutes] = useState<string[]>(busRoutes.map(route => route.id));
   const [hoveredArea, setHoveredArea] = useState<typeof studentAreas[0] | null>(null);
 
   useEffect(() => {
     if (!mapContainer.current) return;
+    
+    if (!process.env.NEXT_PUBLIC_MAPBOX_TOKEN) {
+      setMapError('Mapbox token is missing. Please check environment configuration.');
+      return;
+    }
 
-    map.current = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: "mapbox://styles/mapbox/light-v11",
-      center: [-81.265, 43.005],
-      zoom: 12,
-    });
-
-    map.current.on("load", () => {
-      console.log("Map loaded.");
-
-      // Add student areas source
-      map.current?.addSource("student-areas", {
-        type: "geojson",
-        data: {
-          type: "FeatureCollection",
-          features: studentAreas.map(area => ({
-            type: "Feature",
-            geometry: { type: "Polygon", coordinates: [area.boundary] },
-            properties: { name: area.name, description: area.description, color: area.color },
-          })),
-        },
+    try {
+      map.current = new mapboxgl.Map({
+        container: mapContainer.current,
+        style: "mapbox://styles/mapbox/light-v11",
+        center: [-81.265, 43.005],
+        zoom: 12,
       });
 
-      // Add student areas fill layer
-      map.current?.addLayer({
-        id: "student-area-fill",
-        type: "fill",
-        source: "student-areas",
-        paint: {
-          "fill-color": ["get", "color"],
-          "fill-opacity": 0.2,
-          "fill-outline-color": ["get", "color"],
-        },
-      });
+      map.current.on("load", () => {
+        if (!map.current) return;
+        console.log("Map loaded.");
 
-      // Add student area outlines
-      map.current?.addLayer({
-        id: "student-area-outline",
-        type: "line",
-        source: "student-areas",
-        paint: {
-          "line-color": ["get", "color"],
-          "line-width": 2,
-        },
-      });
+        // Add student areas source
+        map.current?.addSource("student-areas", {
+          type: "geojson",
+          data: {
+            type: "FeatureCollection",
+            features: studentAreas.map(area => ({
+              type: "Feature",
+              geometry: { type: "Polygon", coordinates: [area.boundary] },
+              properties: { name: area.name, description: area.description, color: area.color },
+            })),
+          },
+        });
 
-      console.log("Student areas added.");
+        // Add student areas fill layer
+        map.current?.addLayer({
+          id: "student-area-fill",
+          type: "fill",
+          source: "student-areas",
+          paint: {
+            "fill-color": ["get", "color"],
+            "fill-opacity": 0.2,
+            "fill-outline-color": ["get", "color"],
+          },
+        });
 
-      // Add bus routes source
-      map.current?.addSource("bus-routes", {
-        type: "geojson",
-        data: {
-          type: "FeatureCollection",
-          features: busRoutes.map(route => ({
-            type: "Feature",
-            geometry: { type: "LineString", coordinates: route.coordinates },
-            properties: { id: route.id, name: route.name, color: route.color },
-          })),
-        },
-      });
+        // Add student area outlines
+        map.current?.addLayer({
+          id: "student-area-outline",
+          type: "line",
+          source: "student-areas",
+          paint: {
+            "line-color": ["get", "color"],
+            "line-width": 2,
+          },
+        });
 
-      // Add bus routes layer
-      map.current?.addLayer({
-        id: "bus-routes",
-        type: "line",
-        source: "bus-routes",
-        paint: {
-          "line-color": ["get", "color"],
-          "line-width": 3,
-          "line-opacity": 0.8,
-        },
-        filter: ["in", "id", ...visibleRoutes],
-      });
+        console.log("Student areas added.");
 
-      console.log("Bus routes added.");
+        // Add bus routes source
+        map.current?.addSource("bus-routes", {
+          type: "geojson",
+          data: {
+            type: "FeatureCollection",
+            features: busRoutes.map(route => ({
+              type: "Feature",
+              geometry: { type: "LineString", coordinates: route.coordinates },
+              properties: { id: route.id, name: route.name, color: route.color },
+            })),
+          },
+        });
 
-      // Hover interactions
-      map.current?.on("mousemove", "student-area-fill", (e) => {
-        const feature = e.features?.[0]; // Optional chaining ensures we safely access the first feature
-        if (!feature) return; // If there's no feature, exit early
-      
-        const area = studentAreas.find(a => a.name === feature.properties?.name);
-        if (area) setHoveredArea(area);
+        // Add bus routes layer
+        map.current?.addLayer({
+          id: "bus-routes",
+          type: "line",
+          source: "bus-routes",
+          paint: {
+            "line-color": ["get", "color"],
+            "line-width": 3,
+            "line-opacity": 0.8,
+          },
+          filter: ["in", "id", ...visibleRoutes],
+        });
+
+        console.log("Bus routes added.");
+
+        // Hover interactions
+        map.current?.on("mousemove", "student-area-fill", (e) => {
+          const feature = e.features?.[0]; // Optional chaining ensures we safely access the first feature
+          if (!feature) return; // If there's no feature, exit early
+        
+          const area = studentAreas.find(a => a.name === feature.properties?.name);
+          if (area) setHoveredArea(area);
+        });
+        
+        map.current?.on("mouseleave", "student-area-fill", () => {
+          if (map.current) map.current.getCanvas().style.cursor = "";
+        });
       });
-      
-      map.current?.on("mouseleave", "student-area-fill", () => {
-        if (map.current) map.current.getCanvas().style.cursor = "";
-      });
-    });
+    } catch (error) {
+      setMapError('Failed to initialize map. Please try again later.');
+      console.error('Map initialization error:', error);
+    }
 
     return () => map.current?.remove();
   }, []);
@@ -1332,10 +1344,16 @@ const Map = () => {
     <div className="flex flex-col-reverse md:flex-row gap-4">
       {/* Map Container */}
       <div className="w-full h-[450px] relative">
-        <div ref={mapContainer} className="w-full h-full" />
-  
+        {mapError ? (
+          <div className="w-full h-full flex items-center justify-center bg-gray-100 rounded-lg">
+            <p className="text-red-600">{mapError}</p>
+          </div>
+        ) : (
+          <div ref={mapContainer} className="w-full h-full" />
+        )}
+        
         {/* Hover Info Box */}
-        {hoveredArea && (
+        {hoveredArea && !mapError && (
           <div className="absolute top-4 left-4 bg-white p-3 rounded-lg shadow-lg">
             <h3 className="font-medium text-base">{hoveredArea.name}</h3>
             <p className="text-sm text-gray-600">{hoveredArea.description}</p>
