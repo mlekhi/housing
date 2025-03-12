@@ -11,7 +11,7 @@ We will discuss each of these locations based on the below 4 important criteria�
 
 ## Masonville 
 ### Proximity to Campus
-As you might imagine, the region of Masonville is loosely centered around Masonville Mall. It is located directly north of campus, and students enjoy various bus options that help them get to class. In terms of getting to class, while some students are happy to talk 35+ minutes, the preferable alternative is taking one of the three available busses:
+As you might imagine, the region of Masonville is loosely centered around Masonville Mall. It is located directly north of campus, and students enjoy various bus options that help them get to class. In terms of getting to class, while some students are happy to walk 35+ minutes, the preferable alternative is taking one of the three available busses:
 
 93: arrives every 25 minutes
 13: arrives every 15 minutes
@@ -122,12 +122,13 @@ Again, with the primarily apartment nature of this area, you won’t find many s
 ## Sarnia/Wonderland (West Side)
 ### Proximity to Campus
 
-Sarnia and Wonderland is a well-equipped location when it comes to amenities, though not as convenient for commuting to campus.
+Sarnia and Wonderland is a well-equipped location when it comes to amenities, though not as convenient for commuting to campus due to the long distances.
 Students have multiple bus options:
-- 27, 10, or 33 provide direct routes to campus.
+- 27, 10, 33 are for the south side of Sarnia and Wonderland.
+- 9, 31 are the routes for the north side of Sarnia and Wonderland.
 - 91/17 to Oxford/Wharncliffe with a connecting bus can also work.
 
-Commute times range from 20–40 minutes, so planning ahead is key when deciding when to head home or travel to campus.
+Commute times range from 20–40 minutes, so planning ahead is key. These routes can have infrequent service, and some (like 31) stop running relatively earlyat night.
 
 ### Access to Amenities and Essential Services
 
@@ -139,7 +140,7 @@ This area is packed with amenities, making daily life convenient. Key highlights
 - Liquor Store: An LCBO in the plaza.
 - Other Essentials: Banks, Value Village, car dealerships, a CrossFit gym, and even a dentist—helpful given the difficulty of booking on-campus appointments.
 
-For those who love food and convenience, this area has everything you need.
+For those who love food and convenience, this area has everything you need. However, the long distances mean that reaching them can be difficult without a car.
 
 ### Types of Housing and Major Properties
 
