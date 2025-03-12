@@ -26,6 +26,11 @@ export const metadata: Metadata = {
     "student-friendly landlords London Ontario",
     "avoid rental scams Western University",
   ],
+  metadataBase: new URL('https://housewestern.com'),
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
   openGraph: {
     title: "HouseWestern | Student Housing Guide for Western University",
     description:
@@ -35,12 +40,24 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/housewestern-og-image.jpg",
+        url: "/logo.png",
+        width: 512,
+        height: 512,
+        alt: "HouseWestern Logo",
+      },
+      {
+        url: "/landing.png",
         width: 1200,
         height: 630,
         alt: "HouseWestern - The Ultimate Student Housing Guide",
       },
     ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'HouseWestern | Student Housing Guide',
+    description: 'Find safe, affordable off-campus housing at Western University',
+    images: ['/landing.png'],
   },
 };
 
