@@ -12,7 +12,7 @@ interface HouseLogoProps {
 
 export const HouseLogoTitle: FC<HouseLogoProps> = ({ className }) => (
   <Link href="/" className={cn(className, "group flex items-center space-x-1")}>
-    <motion.span whileHover={{ scale: 1.01 }} className="text-xl font-semibold tracking-tight flex items-center">
+    <motion.span whileHover={{ scale: 1.01 }} className="text-xl font-semibold tracking-tight flex items-center text-gray-800">
       House
       <span className="ml-1 text-purple-900 transition-colors">Western</span>
     </motion.span>

@@ -67,10 +67,10 @@ const SectionPage: FC = () => {
                   remarkPlugins={[remarkGfm]}
                   rehypePlugins={[rehypeRaw]} // ✅ Fixes inline HTML
                   components={{
-                    h1: ({ children }) => <h1 className="text-5xl font-light mt-4 mb-6 text-gray-900 dark:text-gray-100">{children}</h1>,
-                    h2: ({ children }) => <h2 className="text-3xl font-light mt-4 mb-4 text-gray-900 dark:text-gray-100">{children}</h2>,
-                    h3: ({ children }) => <h3 className="text-2xl font-light mt-4 mb-3 text-gray-900 dark:text-gray-100">{children}</h3>,
-                    p: ({ children }) => <p className="text-lg text-gray-800 dark:text-gray-200 leading-relaxed mb-4">{children}</p>,
+                    h1: ({ children }) => <h1 className="text-5xl font-light mt-4 mb-6 text-gray-800">{children}</h1>,
+                    h2: ({ children }) => <h2 className="text-3xl font-light mt-4 mb-4 text-gray-800">{children}</h2>,
+                    h3: ({ children }) => <h3 className="text-2xl font-light mt-4 mb-3 text-gray-800">{children}</h3>,
+                    p: ({ children }) => <p className="text-lg text-gray-800 leading-relaxed mb-4">{children}</p>,
                     ul: ({ children }) => <ul className="list-disc list-outside ml-8 space-y-2 mb-6">{children}</ul>, 
                     ol: ({ children }) => <ol className="list-decimal list-outside ml-8 space-y-2 mb-6">{children}</ol>,
                     li: ({ children }) => <li className="text-lg text-gray-800">{children}</li>,
