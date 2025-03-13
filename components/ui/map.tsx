@@ -1315,6 +1315,7 @@ const Map = () => {
         
         map.current?.on("mouseleave", "student-area-fill", () => {
           if (map.current) map.current.getCanvas().style.cursor = "";
+          setHoveredArea(null); // Clear the hovered area state
         });
       });
     } catch (error) {
