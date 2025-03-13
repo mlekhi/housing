@@ -10,7 +10,7 @@ const studentAreas = [
     {
         name: 'Masonville',
         coordinates: [-81.275, 43.015] as [number, number],
-        description: 'Popular student area near Masonville Mall with multiple bus routes',
+        description: 'Popular student area near Masonville Mall',
         busRoutes: ['106', '27'],
         color: '#d7b5ff', // Light purple for Masonville
         boundary: [
@@ -72,7 +72,7 @@ const studentAreas = [
   {
     name: 'Downtown',
     coordinates: [-81.245, 42.985] as [number, number],
-    description: 'Vibrant area with many amenities and bus connections',
+    description: 'Area with many entertainment and nightlife options',
     busRoutes: ['106', '27', '13'],
     color: '#d7b5ff', // Light purple for Downtown
     boundary: [
@@ -124,7 +124,7 @@ const studentAreas = [
   {
     name: 'West of Campus',
     coordinates: [-81.285, 43.005] as [number, number],
-    description: 'Sarnia and Wonderland area with multiple bus routes',
+    description: 'Well-equipped area with ranging commute times',
     busRoutes: ['106', '27'],
     color: '#d7b5ff', // Light purple for West of Campus
     boundary: [
@@ -574,7 +574,7 @@ const busRoutes = [
     },
     {
       id: '93',
-      name: 'Wharncliffe',
+      name: 'Richmond',
       color: '#8b5cf6', // purple
       coordinates: [
         [-81.281775, 43.025011],
@@ -1149,7 +1149,7 @@ const busRoutes = [
     },
     {
       id: '34',
-      name: 'Sarnia',
+      name: 'Ambleside',
       color: '#14b8a6', // teal
       coordinates: [
         [-81.282701, 43.026757],
@@ -1215,7 +1215,7 @@ const Map = () => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
   const [mapError, setMapError] = useState<string | null>(null);
-  const [visibleRoutes, setVisibleRoutes] = useState<string[]>(busRoutes.map(route => route.id));
+  const [visibleRoutes, setVisibleRoutes] = useState<string[]>([]); // Initialize with empty array
   const [hoveredArea, setHoveredArea] = useState<typeof studentAreas[0] | null>(null);
 
   useEffect(() => {
